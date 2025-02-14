@@ -9,6 +9,13 @@
   <body>
     <h1>CRUD LARAVEL 10</h1>
     <a href="/ajouter" class="btn btn-primary">Ajouter</a>
+
+    @if(session('status'))
+        <div class="alert alert-success">
+          {{session('status')}}
+        </div>
+    @endif
+
     
     <table class="table">
   <thead>
@@ -21,36 +28,19 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>Ts2</td>
-      <td>
-        <a href="" class="btn btn-info">Modifier</a>
-        <a href="" class="btn btn-danger">Suprimer</a>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>Ts2</td>
-      <td>
-        <a href="" class="btn btn-info">Modifier</a>
-        <a href="" class="btn btn-danger">Suprimer</a>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry the Bird</td>
-      <td>Diop</td>
-      <td>Ts2</td>
-      <td>
-        <a href="" class="btn btn-info">Modifier</a>
-        <a href="" class="btn btn-danger">Suprimer</a>
-      </td>
-    </tr>
+    @foreach($etudiants as $etudiant)
+          <tr>
+            <th scope="row">{{ $etudiant->id}}</th>
+            <td>{{ $etudiant->nom}}</td>
+            <td>{{ $etudiant->prenom}}</td>
+            <td>{{ $etudiant->classe}}</td>
+            <td>
+              <a href="/modifier-etudiant/{{ $etudiant->id}}" class="btn btn-info">Modifier</a>
+              <a href="" class="btn btn-danger">Suprimer</a>
+            </td>
+          </tr>
+     @endforeach   
+    
   </tbody>
 </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
